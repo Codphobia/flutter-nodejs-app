@@ -9,9 +9,9 @@ import dotenv from "dotenv";
   dotenv.config();
 mongoose.connect(process.env.DATABASE_URL).then((result) => {
     
-app.get('/list',async function(req,res){
-    
-    res.send('app is live now...');
+app.get('/list',  function(req,res){
+    var response={message:"'app is live now...'"}
+    res.json(response);
 });
 // app.get('/list/ ',async function(req,res){
 //     var note= new NM({
