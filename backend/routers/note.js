@@ -39,7 +39,7 @@ route.post('/update', async function(req,res){
      res.json(response);
 })
 route.post('/list', async(req,res)=>{
-    var note=await noteRoute.find({userId:req.body.userId});
+    var note=await noteRoute.find( );
     res.json(note);
 })
 export default route;
