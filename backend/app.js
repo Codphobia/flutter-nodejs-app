@@ -7,21 +7,24 @@ import dotenv from "dotenv";
 
  const app= express();
   dotenv.config();
-mongoose.connect(process.env.DATABASE_URL).then((result) => {
-    
-app.get('/',  function(req,res){
-    var response={message:"'app is live now...'"}
-    res.send(response);
-});
- 
-}).catch((err) => {
-   console.log(err); 
-});
-
-// parse application/x-www-form-urlencoded
+  // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // parse application/json
 app.use(bodyParser.json())
 app.use('/note',noteRoute);
-app.listen(3000,()=>console.log('sever is running'))
+
+mongoose.connect(process.env.DATABASE_URL).then((result) => {
+    
+  app.listen(3000,()=>console.log('sever is running'))
+ 
+}).catch((err) => {
+   console.log(err); 
+});
+
+app.get('/',  function(req,res){
+  var response={message:"'app is live now...'"}
+  res.send(response);
+});
+
+
