@@ -38,7 +38,7 @@ route.post('/update', async function(req,res){
      const response={message:"New Note Updated!"+req.body.userId};
      res.json(response);
 })
-route.post('/list', async(req,res)=>{
+route.get('/list', async(req,res)=>{
     var note=await noteRoute.find( );
     res.json(note);
 })

@@ -9,10 +9,10 @@ import dotenv from "dotenv";
   dotenv.config();
 mongoose.connect(process.env.DATABASE_URL).then((result) => {
     
-// app.get('/list',async function(req,res){
-//     var note= await NM.find();
-//     res.json(note);
-// });
+app.get('/list',async function(req,res){
+    
+    res.send('app is live now...');
+});
 // app.get('/list/ ',async function(req,res){
 //     var note= new NM({
 //         id:"'0002",
