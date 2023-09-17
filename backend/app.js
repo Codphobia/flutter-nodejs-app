@@ -7,21 +7,25 @@ import dotenv from "dotenv";
 
  const app= express();
   dotenv.config();
-mongoose.connect().then((result) => {
+// mongoose.connect().then((result) => {
     
-app.get('/',  function(req,res){
-    var response={message:"'app is live now...'"}
-    res.send(response);
-});
+// app.get('/',  function(req,res){
+//     var response={message:"'app is live now...'"}
+//     res.send(response);
+// });
  
-}).catch((err) => {
-   console.log(err); 
-});
+// }).catch((err) => {
+//    console.log(err); 
+// });
 const PORT = process.env.PORT || 3000
 const connectDB = async () => {
   try {
     const conn = await mongoose.connect(process.env.DATABASE_URL);
     console.log(`MongoDB Connected: ${conn.connection.host}`);
+    app.get('/',  function(req,res){
+          var response={message:"'app is live now...'"}
+          res.send(response);
+      });
   } catch (error) {
     console.log(error);
     process.exit(1);
@@ -39,6 +43,7 @@ app.use(bodyParser.json())
 app.use('/note',noteRoute);
 //Connect to the database before listening
 connectDB().then(() => {
+
     app.listen(PORT, () => {
         console.log("listening for requests");
     })
