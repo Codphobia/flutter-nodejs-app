@@ -4,7 +4,7 @@ import 'package:notekeep/model/note.dart';
 import 'package:notekeep/repository/note_repo.dart';
 
 class NoteController extends GetxController {
-  List<NoteKeep> note=[];
+  List<NoteKeep> note = [];
   final noteRepo = NoteRepo();
   RxBool isLoading = false.obs;
   @override
@@ -20,26 +20,26 @@ class NoteController extends GetxController {
     update();
   }
 
-  addNote({required NoteKeep noteKeep}) {
+  addNote({required NoteKeep noteKeep})   {
     note.add(noteKeep);
-    noteRepo.addNote(noteKeep: noteKeep);
+      noteRepo.addNote(noteKeep: noteKeep);
     update();
     Get.back<void>();
   }
 
-  deleteNote({required NoteKeep noteKeep}) {
-    final indexVal = note.indexOf(
-        note.firstWhere((element) => element.id == noteKeep.id));
+  deleteNote({required NoteKeep noteKeep}) async {
+    final indexVal =
+        note.indexOf(note.firstWhere((element) => element.id == noteKeep.id));
     note.removeAt(indexVal);
-    noteRepo.deleteNote(noteKeep: noteKeep);
+    await noteRepo.deleteNote(noteKeep: noteKeep);
     update();
   }
 
-  updateNote({required NoteKeep noteKeep}) {
-    final indexVal = note.indexOf(
-        note.firstWhere((element) => element.id == noteKeep.id));
+  updateNote({required NoteKeep noteKeep}) async {
+    final indexVal =
+        note.indexOf(note.firstWhere((element) => element.id == noteKeep.id));
     note[indexVal] = noteKeep;
-    noteRepo.updateNote(noteKeep: noteKeep);
+    await noteRepo.updateNote(noteKeep: noteKeep);
     update();
     Get.back<void>();
   }
