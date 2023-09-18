@@ -19,21 +19,21 @@ class HomePage extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
-      body: GetX<NoteController>(
+      body: GetBuilder<NoteController>(
         init: NoteController(),
         builder: (nk) {
           return nk.isLoading.value
               ? const Center(
                   child: CircularProgressIndicator(),
                 )
-              : nk.note!.isEmpty
+              : nk.note.isEmpty
                   ? const Center(
                       child: Text('Note Not Yet!'),
                     )
                   : ListView.builder(
-                      itemCount: nk.note!.length,
+                      itemCount: nk.note.length,
                       itemBuilder: (context, index) {
-                        NoteKeep noteKeep = nk.note![index];
+                        NoteKeep noteKeep = nk.note[index];
                         return ListTile(
                           onTap: () {
                             Navigator.push(
@@ -50,7 +50,14 @@ class HomePage extends StatelessWidget {
                           },
                           leading: CircleAvatar(child: Text(index.toString())),
                           title: Text(noteKeep.title),
-                          subtitle: Text(noteKeep.description),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(noteKeep.description),
+                              Text(
+                                  "${noteKeep.dateAdded!.day}/${noteKeep.dateAdded!.month}/${noteKeep.dateAdded!.year} ")
+                            ],
+                          ),
                           trailing: Column(children: [
                             IconButton(
                                 onPressed: () {

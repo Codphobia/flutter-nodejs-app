@@ -59,7 +59,7 @@ class AddPage extends StatelessWidget {
                         userId: noteKeep!.userId,
                         title: titleC.text ?? noteKeep!.title,
                         description: contentC.text ?? noteKeep!.description,
-                        dateAdded: DateTime.now().toString());
+                        dateAdded: DateTime.now());
                     Get.find<NoteController>().updateNote(noteKeep: notesKeep);
                   } else {
                     var uuid = Uuid();
@@ -69,7 +69,7 @@ class AddPage extends StatelessWidget {
                         userId: 'jamalkhanii691',
                         title: titleC.text,
                         description: contentC.text,
-                        dateAdded: DateTime.now().toString());
+                        dateAdded: DateTime.now() );
                     Get.find<NoteController>().addNote(noteKeep: noteKeep);
                   }
                 },

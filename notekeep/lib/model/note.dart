@@ -5,7 +5,7 @@ class NoteKeep {
   String userId;
   String title;
   String description;
-  String? dateAdded;
+  DateTime? dateAdded;
   NoteKeep({
     required this.id,
     required this.userId,
@@ -22,7 +22,7 @@ class NoteKeep {
     result.addAll({'title': title});
     result.addAll({'description': description});
     if (dateAdded != null) {
-      result.addAll({'dateAdded': dateAdded});
+      result.addAll({'dateAdded': dateAdded!.toIso8601String()});
     }
 
     return result;
@@ -34,7 +34,7 @@ class NoteKeep {
       userId: map['userId'] ?? '',
       title: map['title'] ?? '',
       description: map['description'] ?? '',
-      dateAdded: map['dateAdded'] ?? 'empty',
+      dateAdded: DateTime.tryParse(map["dateAdded"]),
     );
   }
 

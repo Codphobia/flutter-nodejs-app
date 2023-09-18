@@ -52,7 +52,7 @@ class NoteRepo {
     }
   }
 
-  Future<List<NoteKeep>?> getNoteList( ) async {
+  Future<List<NoteKeep>?> getNoteList() async {
     try {
       String url = '${baseUrl}note/list';
 
@@ -68,7 +68,6 @@ class NoteRepo {
           noteList.add(noteKeep);
         }
 
-        Get.snackbar('success', js['message'].toString());
         return noteList;
       }
       return [];
