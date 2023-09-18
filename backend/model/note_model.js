@@ -20,9 +20,8 @@
 
     },
     dateAdded:{
-        type:Date,
- default : Date.now(),
-    }
+        type:String,
+ default : Date.now()   }
  });
  export default mongoose.model('Note',noteSchema);
  

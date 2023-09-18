@@ -7,7 +7,7 @@ route.get('/testing',(req,res)=>res.send('hello api is working'));
 
 route.post('/add', async    (req,res)=>{
 
-    var    myNote= new noteRoute({
+    let    myNote= new noteRoute({
         id:req.body.id,
         userId:req.body.userId,
         title:req.body.title,
@@ -15,19 +15,19 @@ route.post('/add', async    (req,res)=>{
         
      });
      await myNote.save();
-     const response={message:"New Note Created!"+req.body.userId};
+     const response={message:"New Note Created!"};
      res.json(response);
         
 })
 route.post('/delete',async function (req,res){
   await noteRoute.deleteOne({id:req.body.id}); 
-  const response={message:"one Note Deleted!"+req.body.id};
+  const response={message:"one Note Deleted!"};
   res.json(response);
 
 })
 route.post('/update', async function(req,res){
     await noteRoute.deleteOne({id:req.body.id});
-    var    myNote= new noteRoute({
+    let    myNote= new noteRoute({
         id:req.body.id,
         userId:req.body.userId,
         title:req.body.title,
@@ -35,11 +35,11 @@ route.post('/update', async function(req,res){
         
      });
      await myNote.save();
-     const response={message:"New Note Updated!"+req.body.userId};
+     const response={message:"New Note Updated!"};
      res.json(response);
 })
 route.get('/list', async(req,res)=>{
-    var note=await noteRoute.find( );
+    let note=await noteRoute.find( );
     res.json(note);
 })
 export default route;
